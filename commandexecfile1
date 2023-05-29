@@ -15,7 +15,7 @@ int main()
     {
         printf("This is the child process with PID: %d\n",getpid());
         printf("Parent process with PID: %d\n",getppid());
-        execlp("/bin/Is","Is",NULL);
+        execlp("/bin/ls","ls",NULL);
         printf("This shouldn't be displayed if exec() was successful\n");
         return 0;
     }
