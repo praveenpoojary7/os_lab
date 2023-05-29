@@ -3,7 +3,7 @@
 #include<sys/wait.h>
 int main()
 {
-    pid_t=pid;
+    pid_t pid;
     int status;
     pid = fork();
     if(pid<0)
@@ -22,7 +22,7 @@ int main()
     else
     {
         printf("This is the parent process with PID: %d\n",getpid());
-        printf("Child process with PID: %d\n",pid());
+        printf("Child process with PID: %d\n",pid);
         wait(&status);
         printf("Child process exited with status: %d\n",status);
         return 0;
