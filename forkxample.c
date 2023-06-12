@@ -10,12 +10,6 @@ void forkexample()
     }
     else
     {
-        int i;
-        while(i<0)
-        {
-            i++;
-            printf("hmm\n");
-        }
         printf("Parent has x = %d\n",--x);
     }
 }
