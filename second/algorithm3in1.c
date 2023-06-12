@@ -88,6 +88,14 @@ int main()
     for(int i=0;i<n;i++)
     {
         printf("\nEnter the details for processes %d:\n",i+1);
-        
+        processes[i].processId=i+1;
+        printf("Enter the burst time: ");
+        scanf("%d",&processes[i].burstTime);
+        printf("Enter the priority: ");
+        scanf("%d",&processes[i].priority);
     }
+    fcfs(processes,n);
+    SJN(processes,n);
+    priorityScheduling(processes,n);
+    return 0;
 }
