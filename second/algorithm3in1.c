@@ -14,11 +14,11 @@ void fcfs(Process processes[],int n)
     {
         printf("Process %d is running.\n",processes[i].processId);
         waitingTime+=processes[i].burstTime;
-        printf("Process %d finished. waiting time...%d\n",processes[i].processId,waitingTime);
+        printf("Process %d finished. waiting time...%dms\n",processes[i].processId,waitingTime);
         totalWaitingTime+=waitingTime;
     }
     averageWaitingTime=totalWaitingTime/n;
-    printf("Average Waiting Time: %.2f\n",averageWaitingTime);
+    printf("Average Waiting Time: %.2fms\n",averageWaitingTime);
 }
 void SJN(Process processes[],int n)
 {
@@ -44,11 +44,11 @@ void SJN(Process processes[],int n)
         printf("Process %d is running.\n",processes[i].processId);
         waitingTime+=totalTime;
         totalTime+=processes[i].burstTime;
-        printf("Process %d finished. Waiting time: %d\n",processes[i].processId,waitingTime);
+        printf("Process %d finished. Waiting time: %dms\n",processes[i].processId,waitingTime);
         totalWaitingTime+=waitingTime;
     }
     averageWaitingTime=totalWaitingTime/n;
-    printf("Average Waiting Time: %.2f\n",averageWaitingTime);
+    printf("Average Waiting Time: %.2fms\n",averageWaitingTime);
 }
 void priorityScheduling(Process processes[], int n)
 {
@@ -73,11 +73,11 @@ void priorityScheduling(Process processes[], int n)
     {
         printf("Process %d is running.\n",processes[i].processId);
         waitingTime+=processes[i].burstTime;
-        printf("Process %d finished. Waiting time: %d\n",processes[i].processId,waitingTime);
+        printf("Process %d finished. Waiting time: %dms\n",processes[i].processId,waitingTime);
         totalWaitingTime+=waitingTime;
     }
     averageWaitingTime=totalWaitingTime/n;
-    printf("Average Waiting Time: %.2f\n",averageWaitingTime);
+    printf("Average Waiting Time: %.2fms\n",averageWaitingTime);
 }
 int main()
 {
@@ -89,7 +89,7 @@ int main()
     {
         printf("\nEnter the details for processes %d:\n",i+1);
         processes[i].processId=i+1;
-        printf("Enter the burst time: ");
+        printf("Enter the burst time(ms): ");
         scanf("%d",&processes[i].burstTime);
         printf("Enter the priority: ");
         scanf("%d",&processes[i].priority);
