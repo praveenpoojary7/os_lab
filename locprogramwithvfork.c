@@ -3,7 +3,7 @@
 int main()
 {
     int loc = 6;
-    int pid = fork();
+    int pid = vfork();
     if(pid==0)
     {
         printf("Child proces pid = %d\n",getpid());
@@ -17,4 +17,5 @@ int main()
         printf("Its parent process pid = %d\n",getppid());
     }
     printf("loc = %d\n",loc);
+    _exit(2);
 }
