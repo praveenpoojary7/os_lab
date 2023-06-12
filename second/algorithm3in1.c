@@ -69,5 +69,13 @@ void priorityScheduling(Process processes[], int n)
         }
         
     }
-    
+    for(int i=0;i<n;i++)
+    {
+        printf("Process %d is running.\n",processes[i].processId);
+        waitingTime+=processes[i].burstTime;
+        printf("Process %d finished. Waiting time: %d\n",processes[i].processId,waitingTime);
+        totalWaitingTime+=waitingTime;
+    }
+    averageWaitingTime=totalWaitingTime/n;
+    printf("Average Waiting Time: %.2f\n",averageWaitingTime);
 }
