@@ -56,4 +56,18 @@ void priorityScheduling(Process processes[], int n)
     float totalWaitingTime=0;
     float averageWaitingTime;
     printf("\nPriority Scheduling Algorithm:\n");
+    for (int i = 0; i < n-1; i++)
+    {
+        for (int j = 0; j < n-i-1; j++)
+        {
+            if(processes[j].priority>processes[j+1].priority)
+            {
+                Process temp=processes[j];
+                processes[j]=processes[j+1];
+                processes[j+1]=temp;
+            }
+        }
+        
+    }
+    
 }
