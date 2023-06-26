@@ -17,7 +17,7 @@ void fcfs(int processes[],int n,int burst_time[])
     printf("Processes\tBurst Time\tWaiting TIme\tTurnaround Time\n");
     for (int i = 0; i < n; i++)
     {
-        printf("%d\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
+        printf("%d\t\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
     }
     printf("AVG waiting time: %2f\n",(float)total_WT/n);
     printf("AVG turnaround time: %2f\n",(float)total_TAT/n);
@@ -59,7 +59,7 @@ void sjf(int processes[],int n,int burst_time[])
     printf("Processes\tBurst Time\tWaiting TIme\tTurnaround Time\n");
     for (int i = 0; i < n; i++)
     {
-        printf("%d\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
+        printf("%d\t\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
     }
     printf("AVG waiting time: %2f\n",(float)total_WT/n);
     printf("AVG turnaround time: %2f\n",(float)total_TAT/n);
@@ -68,14 +68,15 @@ void sjf(int processes[],int n,int burst_time[])
 void roundRobin(int processes[],int n,int burst_time[],int quantum)
 {
     int remaining_time[n],WT[n],TAT[n],total_WT=0,total_TAT=0;
+    int time[n];
     for (int i = 0; i < n; i++)
     {
         remaining_time[i]=burst_time[i];
+        time[n]=0;
     }
-    int time=0;
+    int all_processes_completed=1;
     while(1)
     {
-        int all_processes_completed=1;
         for (int i = 0; i < n; i++)
         {
             if (remaining_time[i]>0)
@@ -83,18 +84,19 @@ void roundRobin(int processes[],int n,int burst_time[],int quantum)
                 all_processes_completed=0;
                 if (remaining_time[i]>quantum)
                 {
-                    time+=quantum;
+                    time[i]+=quantum;
                     remaining_time[i]-=quantum;
                 }
                 else
                 {
-                    time+=remaining_time[i];
-                    WT[i]=time-burst_time[i];
+                    time[i]+=remaining_time[i];
+                    WT[i]=time[i]-burst_time[i];
                     remaining_time[i]=0;
+                    all_processes_completed=1;
                 }
             }
         }
-        if (all_processes_completed)
+        if (all_processes_completed==1)
         {
             break;
         }
@@ -114,7 +116,7 @@ void roundRobin(int processes[],int n,int burst_time[],int quantum)
     printf("Processes\tBurst Time\tWaiting TIme\tTurnaround Time\n");
     for (int i = 0; i < n; i++)
     {
-        printf("%d\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
+        printf("%d\t\t%d\t\t%d\t\t%d\n",processes[i],burst_time[i],WT[i],TAT[i]);
     }
     printf("AVG waiting time: %2f\n",(float)total_WT/n);
     printf("AVG turnaround time: %2f\n",(float)total_TAT/n);
@@ -128,14 +130,15 @@ void main()
     int processes[n],burst_time[n];
     for (int i = 0; i < n; i++)
     {
-        printf("Enter the Burst time for processes %d",processes[i]+1);
+        printf("Enter the Burst time for processes %d:",i+1);
         scanf("%d",&burst_time[i]);
+        printf("%d\n",burst_time[i]);
         processes[i]=i+1;
     }
     printf("Enter the time quantum for round robin: ");
     int quantum;
     scanf("%d",&quantum);
-    fcfs(processes[n],n,burst_time[n]);
-    sjf(processes[n],n,burst_time[n]);
-    roundRobin(processes[n],n,burst_time[n],quantum);
+    fcfs(processes,n,burst_time);
+    roundRobin(processes,n,burst_time,quantum);
+    sjf(processes,n,burst_time);
 }
