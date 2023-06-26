@@ -5,19 +5,26 @@ typedef struct{
     int processId;
     int burstTime;
     int priority;
+    int arriveTime;
 }Process;
 void fcfs(Process processes[],int n)
 {
     int waitingTime =0;
+    int time=0;
     float totalWaitingTime=0;
     float averageWaitingTime;
     printf("\nFCFS Scheduling Algorithm:\n");
     for(int i=0;i<n;i++)
     {
-        printf("Process %d is running.\n",processes[i].processId);
+        if(processes[i].arriveTime>time)
+        {
+            time=processes[i].arriveTime;
+        }
+        
+        /*printf("Process %d is running.\n",processes[i].processId);
         waitingTime+=processes[i].burstTime;
         printf("Process %d finished. waiting time...%dms\n",processes[i].processId,waitingTime);
-        totalWaitingTime+=waitingTime;
+        totalWaitingTime+=waitingTime;*/
     }
     averageWaitingTime=totalWaitingTime/n;
     printf("Average Waiting Time: %.2fms\n",averageWaitingTime);
@@ -95,6 +102,8 @@ int main()
         scanf("%d",&processes[i].burstTime);
         printf("Enter the priority: ");
         scanf("%d",&processes[i].priority);
+        printf("Enter the Arrival times: ");
+        scanf("%d",&processes[i].arriveTime);
     }
     fcfs(processes,n);
     SJN(processes,n);
