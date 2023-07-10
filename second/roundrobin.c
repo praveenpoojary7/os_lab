@@ -29,7 +29,7 @@ void Sorter(int priority[],int n,int processes[],int burst_time[],int arrival_ti
         arrival_time[first]=temp;
     }
 }
-void priority(int processes[],int n,int burst_time[],int arrival_time[],int priority[])
+void roundRobin(int processes[],int n,int burst_time[],int quantum,int arrival_time[],int priority[])
 {
     int remaining_time[n],WT[n],TAT[n],total_WT=0,total_TAT=0,time=0,RT[n],flag[n],avg_RT=0;
     int completion_time[n];
@@ -48,17 +48,25 @@ void priority(int processes[],int n,int burst_time[],int arrival_time[],int prio
         int x=time,check=0;
         for (int i = 0; i < n; i++)
         {
-            if (remaining_time[i]>0&&arrival_time[i]<=time)//non-preemption process
+            if (remaining_time[i]>0&&arrival_time[i]<=time)//preemption process
             {
                 if(flag[i]==0){
                     flag[i]=1;
                     RT[i]=time-arrival_time[i];
                     avg_RT+=RT[i];
                 }
-                time+=remaining_time[i];
-                completion_time[i]=time;
-                remaining_time[i]=0;
-                all_processes_completed[i]=0;
+                if (remaining_time[i]>quantum)
+                {
+                    remaining_time[i]-=quantum;
+                    time+=quantum;
+                }
+                else
+                {
+                    time+=remaining_time[i];
+                    completion_time[i]=time;
+                    remaining_time[i]=0;
+                    all_processes_completed[i]=0;
+                }
             }
         }
         for (int i = 0; i < n; i++)//checking if all processes have finished executing
@@ -70,7 +78,8 @@ void priority(int processes[],int n,int burst_time[],int arrival_time[],int prio
             time++;
             idle++;
         }
-        if (check==0)break;  
+        if (check==0)break;
+        
     }
     for (int i = 0; i < n; i++)//calculating times
     {
@@ -79,7 +88,7 @@ void priority(int processes[],int n,int burst_time[],int arrival_time[],int prio
         WT[i]=TAT[i]-burst_time[i];
         total_WT+=WT[i];
     }
-    printf("\nPriority algorithm\n");
+    printf("\nROund RObin algorithm\n");
     printf("Processes\tAT\tBT\tPriority\tWT\tTAT\tCT\tRT\n");
     for (int i = 0; i < n; i++)
     {
@@ -108,5 +117,7 @@ void main()
         scanf("%d",&prioritylist[i]);
         processes[i]=i+1;
     }
-    priority(processes,n,burst_time,arrival_time,prioritylist);
+    printf("Enter the time quantum for round robin: ");
+    scanf("%d",&quantum);
+    roundRobin(processes,n,burst_time,quantum,arrival_time,prioritylist);
 }
