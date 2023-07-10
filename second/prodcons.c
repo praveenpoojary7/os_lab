@@ -27,16 +27,12 @@ void consumer()
     x--;
     mutex=signal(mutex);
 }
-int main()
+void main()
 {
     int n;
-    void producer();
-    void consumer();
-    int wait(int);
-    int signal(int);
-    printf("\n1.Producer\n2.Consumer\n3.Exit");
     while(1)
     {
+        printf("\n1.Producer\n2.Consumer\n3.Exit");
         printf("\nEnter your choice:");
         scanf("%d",&n);
         switch(n)
@@ -55,6 +51,5 @@ int main()
                     exit(0);
                     break;
         }
-    }  
-    return 0;
+    }
 }
