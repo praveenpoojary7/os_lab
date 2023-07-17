@@ -110,3 +110,30 @@ void main()
     }
     priority(processes,n,burst_time,arrival_time,prioritylist);
 }
+/* output
+output
+Enter the number of processes: 4
+Enter the arrival time for process 1:2
+Enter the Burst time for processes 1:1
+Enter the priority for process 1:4
+Enter the arrival time for process 2:1
+Enter the Burst time for processes 2:5
+Enter the priority for process 2:2
+Enter the arrival time for process 3:4
+Enter the Burst time for processes 3:1
+Enter the priority for process 3:6
+Enter the arrival time for process 4:0
+Enter the Burst time for processes 4:6
+Enter the priority for process 4:1
+
+Priority algorithm
+Processes       AT      BT      Priority        WT      TAT     CT      RT
+1               2       1       4               4       5       7       4
+2               1       5       2               6       11      12      6
+3               4       1       6               8       9       13      8
+4               0       6       1               0       6       6       0
+AVG waiting time: 4.500000
+AVG turnaround time: 7.750000
+AVG Response time: 4.500000
+Total Idle time: 0
+    /*
