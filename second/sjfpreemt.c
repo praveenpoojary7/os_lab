@@ -118,3 +118,26 @@ void main()
     }
     sjf_pre_emt(processes,n,burst_time,quantum,arrival_time,prioritylist);
 }
+/* OUTPUT
+Enter the number of processes: 4
+Enter the arrival time for process 1:2
+Enter the Burst time for processes 1:1
+Enter the arrival time for process 2:1
+Enter the Burst time for processes 2:5
+Enter the arrival time for process 3:4
+Enter the Burst time for processes 3:1
+Enter the arrival time for process 4:0
+Enter the Burst time for processes 4:6
+Enter the time quantum: 2
+
+Sjf with preemption algorithm
+Processes       AT      BT      WT      TAT     CT      RT
+1               2       1       0       1       3       0
+3               4       1       3       4       8       3
+2               1       5       7       12      13      2
+4               0       6       6       12      12      0
+AVG waiting time: 4.000000
+AVG turnaround time: 7.250000
+AVG Response time: 1.250000
+Total Idle time: 0
+    /*
