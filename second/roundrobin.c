@@ -121,3 +121,32 @@ void main()
     scanf("%d",&quantum);
     roundRobin(processes,n,burst_time,quantum,arrival_time,prioritylist);
 }
+/* output
+ Total number of processes in the system: 4
+
+Enter the Arrival and Burst time of Process[1]
+Arrival time: 0
+Burst time: 5
+
+Enter the Arrival and Burst time of Process[2]
+Arrival time: 2
+Burst time: 4
+
+Enter the Arrival and Burst time of Process[3]
+Arrival time: 3
+Burst time: 2
+
+Enter the Arrival and Burst time of Process[4]
+Arrival time: 5
+Burst time: 1
+Enter the Time Quantum for the processes: 3
+
+Process No      Burst Time      TAT     Waiting Time
+Process No[3]   2               5       3
+Process No[4]   1               4       3
+Process No[1]   5               11      6
+Process No[2]   4               10      6
+
+Average Turn Around Time: 4.500000
+Average Waiting Time: 7.500000
+    /*
